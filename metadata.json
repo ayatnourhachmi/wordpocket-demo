@@ -1,0 +1,5 @@
+{
+  "name": "WordPocket",
+  "description": "A personal language learning assistant. Store your vocabulary words, generate practice stories using Gemini AI, and track your progress.",
+  "requestFramePermissions": []
+}
