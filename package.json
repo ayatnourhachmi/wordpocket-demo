@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "node ./server/index.js",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -12,7 +13,9 @@
     "react": "^19.2.1",
     "lucide-react": "^0.556.0",
     "react-dom": "^19.2.1",
-    "@google/genai": "^1.32.0"
+    "@google/genai": "^1.32.0",
+    "express": "^4.21.1",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

@@ -1,115 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WordPocket - AI Language Practice</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WordPocket - AI Language Practice</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f2fce9',
+              100: '#e1f8cc',
+              200: '#c8f2a1',
+              300: '#a6e96d',
+              400: '#84cc16', // Fallback
+              500: '#78D64B', // The specific Hirslams Lime Green
+              600: '#5bbc2e',
+              700: '#3f8c20',
+              800: '#346f1d',
+              900: '#2d5c1b',
             },
-            colors: {
-              brand: {
-                50: '#f2fce9',
-                100: '#e1f8cc',
-                200: '#c8f2a1',
-                300: '#a6e96d',
-                400: '#84cc16', // Fallback
-                500: '#78D64B', // The specific Hirslams Lime Green
-                600: '#5bbc2e',
-                700: '#3f8c20',
-                800: '#346f1d',
-                900: '#2d5c1b',
-              },
-              dark: {
-                50: '#eff2f1',
-                100: '#dde4e1',
-                200: '#bfcbc5',
-                300: '#96aaa1',
-                400: '#6f867c',
-                500: '#51685e',
-                600: '#3f534a',
-                700: '#35433d',
-                800: '#143023', // Deep Forest Lighter
-                900: '#0A1F18', // Deep Forest Main
-                950: '#05110d',
-              }
+            dark: {
+              50: '#eff2f1',
+              100: '#dde4e1',
+              200: '#bfcbc5',
+              300: '#96aaa1',
+              400: '#6f867c',
+              500: '#51685e',
+              600: '#3f534a',
+              700: '#35433d',
+              800: '#143023', // Deep Forest Lighter
+              900: '#0A1F18', // Deep Forest Main
+              950: '#05110d',
+            }
+          },
+          boxShadow: {
+            'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+            'glow': '0 0 20px rgba(120, 214, 75, 0.4)',
+          },
+          borderRadius: {
+            '3xl': '1.5rem',
+            '4xl': '2rem',
+          },
+          animation: {
+            blob: "blob 7s infinite",
+            'spin-slow': 'spin 3s linear infinite',
+            'tooltip-fade-in': 'tooltipFadeIn 0.2s ease-out forwards',
+          },
+          keyframes: {
+            blob: {
+              "0%": { transform: "translate(0px, 0px) scale(1)" },
+              "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+              "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+              "100%": { transform: "translate(0px, 0px) scale(1)" },
             },
-            boxShadow: {
-              'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
-              'glow': '0 0 20px rgba(120, 214, 75, 0.4)',
-            },
-            borderRadius: {
-              '3xl': '1.5rem',
-              '4xl': '2rem',
-            },
-            animation: {
-              blob: "blob 7s infinite",
-              'spin-slow': 'spin 3s linear infinite',
-              'tooltip-fade-in': 'tooltipFadeIn 0.2s ease-out forwards',
-            },
-            keyframes: {
-              blob: {
-                "0%": { transform: "translate(0px, 0px) scale(1)" },
-                "33%": { transform: "translate(30px, -50px) scale(1.1)" },
-                "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
-                "100%": { transform: "translate(0px, 0px) scale(1)" },
-              },
-              tooltipFadeIn: {
-                "0%": { opacity: "0", transform: "translate(-50%, 10px)" },
-                "100%": { opacity: "1", transform: "translate(-50%, 0)" }
-              }
-            },
+            tooltipFadeIn: {
+              "0%": { opacity: "0", transform: "translate(-50%, 10px)" },
+              "100%": { opacity: "1", transform: "translate(-50%, 0)" }
+            }
           },
         },
-      }
-    </script>
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-        background-color: #F8F9FA;
-        color: #0A1F18;
-      }
-      /* Custom scrollbar for clean UI */
-      ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-      }
-      ::-webkit-scrollbar-track {
-        background: transparent; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #96aaa1; 
-        border-radius: 99px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #6f867c; 
-      }
-      
-      .glass-card {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.1",
-    "react/": "https://aistudiocdn.com/react@^19.2.1/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.32.0"
-  }
-}
-</script>
+      },
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #F8F9FA;
+      color: #0A1F18;
+    }
+
+    /* Custom scrollbar for clean UI */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #96aaa1;
+      border-radius: 99px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #6f867c;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+  </style>
+  <script type="module" src="/index.tsx"></script>
 </head>
-  <body>
-    <div id="root"></div>
-  </body>
+
+<body>
+  <div id="root"></div>
+</body>
 </html>

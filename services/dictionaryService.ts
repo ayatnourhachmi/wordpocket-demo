@@ -1,36 +1,40 @@
-import { GoogleGenAI } from "@google/genai";
-
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 interface DictionaryResult {
   definition?: string;
   example?: string;
 }
 
-export const fetchDefinition = async (word: string, language: string): Promise<DictionaryResult> => {
+const normalizeLanguage = (language: string) => {
+  const lang = (language || "").toLowerCase().trim();
+
+  // allow both "English" and "en"
+  if (lang === "english" || lang === "en") return "en";
+
+  // fallback to english only (since your app is English-only)
+  return "en";
+};
+
+export const fetchDefinition = async (
+  word: string,
+  language: string = "en"
+): Promise<DictionaryResult> => {
   try {
-    const prompt = `
-      Provide a definition and a simple example sentence for the word "${word}" in the language "${language}".
-      Return ONLY a JSON object with keys "definition" (string) and "example" (string).
-      Keep the definition concise (under 20 words).
-      The example sentence should be simple and use the word.
-      If the word is invalid or you cannot find it, return empty strings.
-    `;
+    const langCode = normalizeLanguage(language);
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
-      contents: prompt,
-      config: {
-        responseMimeType: 'application/json',
-      }
-    });
+    const response = await fetch(
+      `https://api.dictionaryapi.dev/api/v2/entries/${langCode}/${encodeURIComponent(word)}`
+    );
 
-    const text = response.text || "{}";
-    const data = JSON.parse(text);
+    if (!response.ok) return {};
+
+    const data = await response.json();
+
+    const entry = data?.[0];
+    const meaning = entry?.meanings?.[0];
+    const definition = meaning?.definitions?.[0];
 
     return {
-      definition: data.definition || undefined,
-      example: data.example || undefined
+      definition: definition?.definition,
+      example: definition?.example
     };
   } catch (error) {
     console.error("Dictionary fetch error:", error);

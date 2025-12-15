@@ -1,5 +1,8 @@
 export enum AppView {
   LANDING = 'LANDING',
+  FEATURES = 'FEATURES',
+  PRICING = 'PRICING',
+  BLOG = 'BLOG',
   DASHBOARD = 'DASHBOARD',
   WORD_BAG = 'WORD_BAG',
   GENERATE = 'GENERATE',
@@ -18,7 +21,7 @@ export interface Word {
   userId: string;
   word: string;
   language: string;
-  translation?: string;
+  definition?: string;
   exampleSentence?: string;
   createdAt: number;
 }

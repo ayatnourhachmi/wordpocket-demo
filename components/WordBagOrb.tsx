@@ -141,7 +141,7 @@ export const WordBagOrb: React.FC<WordBagOrbProps> = ({ words, onWordClick }) =>
                  <div className="bg-dark-900 text-white text-xs p-3 rounded-xl shadow-xl text-center border border-white/10 relative">
                     {/* Triangle */}
                     <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-dark-900 rotate-45 border-t border-l border-white/10"></div>
-                    {wordData.translation && <div className="font-semibold text-brand-300 text-sm mb-1">{wordData.translation}</div>}
+                    {wordData.definition && <div className="font-semibold text-brand-300 text-sm mb-1">{wordData.definition}</div>}
                     {wordData.exampleSentence && <div className="italic text-gray-400">"{wordData.exampleSentence}"</div>}
                  </div>
               </div>
