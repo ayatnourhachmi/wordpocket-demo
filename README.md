@@ -1,20 +1,255 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+  <img src="https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Vite-6.2-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/Express-4.21-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
+  <img src="https://img.shields.io/badge/AI_Powered-OpenRouter-FF6B6B?style=for-the-badge" alt="AI Powered" />
 </div>
 
-# Run and deploy your AI Studio app
+<br/>
 
-This contains everything you need to run your app locally.
+<div align="center">
+  <h1>📚 WordPocket</h1>
+  <p><strong>Transform Your Vocabulary Into Fluency</strong></p>
+  <p>An AI-powered language learning platform that turns your saved vocabulary into personalized stories, dialogs, and practice texts.</p>
+</div>
 
-View your app in AI Studio: https://ai.studio/apps/drive/1Ifz_cKe6F7uEojg4AYI1hmp6NWghfn7l
+---
 
-## Run Locally
+## 🎯 What is WordPocket?
 
-**Prerequisites:**  Node.js
+**WordPocket** is an innovative language learning tool designed to help learners bridge the gap between **passive vocabulary** (words you recognize) and **active fluency** (words you actually use).
 
+### The Problem It Solves
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Traditional vocabulary learning methods often fail because:
+- Words are memorized in isolation, without real-world context
+- Learners forget 80% of vocabulary within a week
+- There's no connection between memorization and practical usage
+
+### Our Solution
+
+WordPocket uses AI to automatically generate **personalized reading material** using EXACTLY the words you want to practice. This creates meaningful context and reinforces vocabulary through natural exposure.
+
+---
+
+## ✨ Key Features
+
+| Feature | Description |
+|---------|-------------|
+| 🎒 **Smart Word Bag** | Save vocabulary with auto-fetched definitions and example sentences |
+| 🤖 **AI Story Generator** | Generate paragraphs, dialogs, or short stories using your selected words |
+| 📖 **Interactive Reading** | Click any word in generated texts to see its definition instantly |
+| 📊 **Progress Dashboard** | Track your vocabulary growth and reading history |
+| 💾 **Local Storage** | Your data is stored locally in your browser |
+| 📱 **Responsive Design** | Works seamlessly on desktop, tablet, and mobile |
+
+---
+
+## 🏗️ Architecture
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                      Frontend (React + Vite)                │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────┐  │
+│  │  Word Bag   │  │  Generator  │  │  Interactive Text   │  │
+│  │  Component  │  │   Views     │  │     Reader          │  │
+│  └─────────────┘  └─────────────┘  └─────────────────────┘  │
+│                           │                                  │
+│              ┌────────────┴────────────┐                    │
+│              │    Services Layer       │                    │
+│              │  • storageService       │                    │
+│              │  • dictionaryService    │                    │
+│              │  • textGenerationService│                    │
+│              └────────────┬────────────┘                    │
+└───────────────────────────│─────────────────────────────────┘
+                            │ /api/generate
+┌───────────────────────────▼─────────────────────────────────┐
+│                   Backend (Express.js)                       │
+│  ┌──────────────────────────────────────────────────────┐   │
+│  │              OpenRouter API Integration               │   │
+│  │           (DeepSeek V3.1 - Free Tier)                │   │
+│  └──────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** (v18 or higher)
+- **npm** or **yarn**
+- **OpenRouter API Key** (free tier available)
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/wordpocket-demo.git
+   cd wordpocket-demo
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   # Copy the example env file
+   cp server/.env.example server/.env
+   
+   # Edit server/.env and add your OpenRouter API key
+   # Get your free key at: https://openrouter.ai/keys
+   ```
+
+4. **Start the development servers**
+
+   You need to run both the frontend and backend:
+
+   **Terminal 1 - Frontend (Vite):**
+   ```bash
+   npm run dev
+   ```
+
+   **Terminal 2 - Backend (Express):**
+   ```bash
+   npm run server
+   ```
+
+5. **Open the app**
+   
+   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 📁 Project Structure
+
+```
+wordpocket-demo/
+├── App.tsx                  # Main React application component
+├── index.tsx                # React entry point
+├── types.ts                 # TypeScript type definitions
+├── vite.config.ts           # Vite configuration with proxy
+├── components/
+│   ├── Button.tsx           # Reusable button component
+│   ├── Input.tsx            # Form input components
+│   ├── InteractiveText.tsx  # Clickable word highlighting
+│   ├── WordBagOrb.tsx       # Visual word bag indicator
+│   └── WordPocketLogo.tsx   # Logo component
+├── services/
+│   ├── dictionaryService.ts # Free Dictionary API integration
+│   ├── storageService.ts    # LocalStorage management
+│   └── textGenerationService.ts # API client for text generation
+├── server/
+│   ├── index.js             # Express server setup
+│   ├── .env.example         # Environment template
+│   └── api/
+│       └── generate.js      # AI text generation endpoint
+└── public/
+    └── logos/               # Partner/inspiration logos
+```
+
+---
+
+## 🔧 How It Works
+
+### 1. Add Words to Your Pocket
+Save any vocabulary you encounter. WordPocket automatically fetches definitions from the [Free Dictionary API](https://dictionaryapi.dev/).
+
+### 2. Select Words for Practice
+Choose which words you want to reinforce from your Word Bag.
+
+### 3. Generate Contextual Content
+The AI creates customized content using your exact words:
+- **Paragraphs** - Descriptive text for reading practice
+- **Dialogs** - Conversational exchanges
+- **Short Stories** - Narrative content with plot
+
+### 4. Interactive Reading
+Read your generated content with interactive word highlighting. Click any bolded vocabulary word to see its definition without leaving the page.
+
+---
+
+## 🔐 Security Notes
+
+> ⚠️ **Important**: Never commit your `.env` file with real API keys!
+
+- API keys are stored only on the server side
+- The `.env` file is included in `.gitignore`
+- User data is stored locally in the browser (not sent to any server)
+- Authentication is mock/demo only - not production-ready
+
+---
+
+## 🛣️ Roadmap & Future Perspectives
+
+### Short-term Improvements
+- [ ] **Multi-language Support** - Add support for Spanish, French, German, etc.
+- [ ] **User Authentication** - Implement real authentication (OAuth, JWT)
+- [ ] **Cloud Sync** - Store user data in a database (MongoDB, PostgreSQL)
+- [ ] **PDF Export** - Download generated texts as formatted PDFs
+- [ ] **Spaced Repetition** - Implement SRS algorithm for word review
+
+### Medium-term Features
+- [ ] **Voice Features** - Text-to-speech for pronunciation practice
+- [ ] **Gamification** - Points, streaks, achievements system
+- [ ] **Word Categories** - Organize vocabulary by topics/themes
+- [ ] **Progress Analytics** - Detailed statistics and learning insights
+- [ ] **Mobile Apps** - Native iOS and Android applications
+
+### Long-term Vision
+- [ ] **Community Features** - Share word lists and stories
+- [ ] **AI Conversation Partner** - Practice speaking with AI
+- [ ] **Integration with Reading Apps** - Import highlights from Kindle, etc.
+- [ ] **Adaptive Difficulty** - AI adjusts content complexity based on proficiency
+- [ ] **Teacher Dashboard** - Tools for educators to manage student progress
+
+---
+
+## 🧰 Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| **Frontend** | React 19, TypeScript, Tailwind CSS |
+| **Build Tool** | Vite 6 |
+| **Backend** | Express.js, Node.js |
+| **AI** | OpenRouter API (DeepSeek V3.1) |
+| **Dictionary** | Free Dictionary API |
+| **Icons** | Lucide React |
+| **Storage** | Browser LocalStorage |
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 👩‍💻 Author
+
+**Ayat Nour Hachmi**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/ayat-nour/)
+
+---
+
+<div align="center">
+  <p>⭐ If you found this project helpful, please give it a star!</p>
+  <p>Made with ❤️ for language learners everywhere</p>
+</div>
