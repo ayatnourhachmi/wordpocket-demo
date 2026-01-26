@@ -17,6 +17,44 @@ interface Particle {
 }
 
 export const WordBagOrb: React.FC<WordBagOrbProps> = ({ words, onWordClick }) => {
+    // Animation Loop
+    const animate = () => {
+      setParticles((prevParticles) => {
+        return prevParticles.map((p) => {
+          let { x, y, vx, vy } = p;
+
+          // If hovering, drastically slow down movement for easier clicking
+          const speedFactor = isHovering ? 0.2 : 1.0;
+
+          x += vx * speedFactor;
+          y += vy * speedFactor;
+
+          // Boundary Check (Circle)
+          // Center is (50, 50). Radius is approx 45% (to keep padding).
+          const dx = x - 50;
+          const dy = y - 50;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const maxRadius = 42;
+
+          if (dist > maxRadius) {
+            // Bounce back towards center
+            const angle = Math.atan2(dy, dx);
+            const targetX = 50 + Math.cos(angle) * maxRadius;
+            const targetY = 50 + Math.sin(angle) * maxRadius;
+
+            x = targetX;
+            y = targetY;
+
+            // Reflect velocity with some damping and randomization
+            vx = -vx * 0.8 + (Math.random() - 0.5) * 0.05;
+            vy = -vy * 0.8 + (Math.random() - 0.5) * 0.05;
+          }
+
+          return { ...p, x, y, vx, vy };
+        });
+      });
+      requestRef.current = requestAnimationFrame(animate);
+    };
   const containerRef = useRef<HTMLDivElement>(null);
   const [particles, setParticles] = useState<Particle[]>([]);
   const requestRef = useRef<number>(0);
@@ -37,45 +75,6 @@ export const WordBagOrb: React.FC<WordBagOrbProps> = ({ words, onWordClick }) =>
     }));
     setParticles(newParticles);
   }, [displayWords]);
-
-  // Animation Loop
-  const animate = () => {
-    setParticles((prevParticles) => {
-      return prevParticles.map((p) => {
-        let { x, y, vx, vy } = p;
-
-        // If hovering, drastically slow down movement for easier clicking
-        const speedFactor = isHovering ? 0.2 : 1.0;
-
-        x += vx * speedFactor;
-        y += vy * speedFactor;
-
-        // Boundary Check (Circle)
-        // Center is (50, 50). Radius is approx 45% (to keep padding).
-        const dx = x - 50;
-        const dy = y - 50;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const maxRadius = 42; 
-
-        if (dist > maxRadius) {
-          // Bounce back towards center
-          const angle = Math.atan2(dy, dx);
-          const targetX = 50 + Math.cos(angle) * maxRadius;
-          const targetY = 50 + Math.sin(angle) * maxRadius;
-          
-          x = targetX;
-          y = targetY;
-
-          // Reflect velocity with some damping and randomization
-          vx = -vx * 0.8 + (Math.random() - 0.5) * 0.05;
-          vy = -vy * 0.8 + (Math.random() - 0.5) * 0.05;
-        }
-
-        return { ...p, x, y, vx, vy };
-      });
-    });
-    requestRef.current = requestAnimationFrame(animate);
-  };
 
   useEffect(() => {
     requestRef.current = requestAnimationFrame(animate);

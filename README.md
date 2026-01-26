@@ -1,18 +1,30 @@
+
 <div align="center">
-  <img src="https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React" />
-  <img src="https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
-  <img src="https://img.shields.io/badge/Vite-6.2-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
-  <img src="https://img.shields.io/badge/Express-4.21-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
+   <img src="https://img.shields.io/badge/React-19.2-61DAFB?style=for-the-badge&logo=react&logoColor=white" alt="React" />
+   <img src="https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
+   <img src="https://img.shields.io/badge/Vite-6.2-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+   <img src="https://img.shields.io/badge/Express-4.21-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
    <img src="https://img.shields.io/badge/AI_Powered-Groq-FF6B6B?style=for-the-badge" alt="AI Powered" />
 </div>
 
 <br/>
 
 <div align="center">
-  <h1>📚 WordPocket</h1>
-  <p><strong>Transform Your Vocabulary Into Fluency</strong></p>
-  <p>An AI-powered language learning platform that turns your saved vocabulary into personalized stories, dialogs, and practice texts.</p>
+   <h1>📚 WordPocket</h1>
+   <p><strong>Transform Your Vocabulary Into Fluency</strong></p>
+   <p>An AI-powered language learning platform that turns your saved vocabulary into personalized stories, dialogs, and practice texts.</p>
 </div>
+
+---
+
+## 🎬 Demo Video
+
+<div align="center">
+   <!-- Place your demo video link or embed here when ready -->
+   <p><em>Demo video coming soon!</em></p>
+</div>
+
+---
 
 ---
 
@@ -75,53 +87,51 @@ WordPocket uses AI to automatically generate **personalized reading material** u
 
 ---
 
-## 🚀 Getting Started
+
+## 🚀 How to Run the Demo
 
 ### Prerequisites
 
 - **Node.js** (v18 or higher)
-- **npm** or **yarn**
+- **npm** (comes with Node.js)
 - **Groq API Key** (get yours at https://console.groq.com/keys)
 
-### Installation
+### Quick Start
 
-1. **Clone the repository**
+1. **Clone this repository:**
    ```bash
    git clone https://github.com/your-username/wordpocket-demo.git
    cd wordpocket-demo
    ```
 
-2. **Install dependencies**
+2. **Install all dependencies:**
    ```bash
    npm install
    ```
 
-3. **Set up environment variables**
+3. **Set up your environment variables:**
    ```bash
-   # Copy the example env file
    cp server/.env.example server/.env
-   
    # Edit server/.env and add your Groq API key
-   # Get your key at: https://console.groq.com/keys
    ```
 
-4. **Start the development servers**
+4. **Start the servers (in two terminals):**
 
-   You need to run both the frontend and backend:
-
-   **Terminal 1 - Frontend (Vite):**
+   **Terminal 1 (Frontend):**
    ```bash
    npm run dev
    ```
 
-   **Terminal 2 - Backend (Express):**
+   **Terminal 2 (Backend):**
    ```bash
    npm run server
    ```
 
-5. **Open the app**
-   
-   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
+5. **Open the app in your browser:**
+
+   Go to [http://localhost:3000](http://localhost:3000)
+
+---
 
 ---
 

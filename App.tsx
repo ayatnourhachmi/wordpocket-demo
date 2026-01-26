@@ -522,13 +522,19 @@ export default function App() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: "Why Context is King in Language Learning", excerpt: "Stop memorizing isolated lists. Learn how context hooks words into your long-term memory.", date: "Dec 12, 2024", read: "5 min read" },
-              { title: "The Power of Active Recall", excerpt: "How to trick your brain into remembering words forever using the spacing effect.", date: "Dec 10, 2024", read: "4 min read" },
-              { title: "5 Ways to Use AI for Fluency", excerpt: "Beyond translation: How to use LLMs as your personal conversation partner.", date: "Dec 08, 2024", read: "7 min read" }
+              { title: "Why Context is King in Language Learning", excerpt: "Stop memorizing isolated lists. Learn how context hooks words into your long-term memory.", date: "Dec 12, 2024", read: "5 min read", img: "https://picsum.photos/seed/context/400/200" },
+              { title: "The Power of Active Recall", excerpt: "How to trick your brain into remembering words forever using the spacing effect.", date: "Dec 10, 2024", read: "4 min read", img: "https://picsum.photos/seed/recall/400/200" },
+              { title: "5 Ways to Use AI for Fluency", excerpt: "Beyond translation: How to use LLMs as your personal conversation partner.", date: "Dec 08, 2024", read: "7 min read", img: "https://picsum.photos/seed/ai-fluency/400/200" }
             ].map((post, i) => (
               <div key={i} className="bg-white rounded-[2rem] overflow-hidden shadow-soft border border-gray-100 hover:shadow-lg transition-all cursor-pointer group">
                 <div className="h-48 bg-gray-100 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-brand-100 to-white group-hover:scale-105 transition-transform duration-700"></div>
+                  <img
+                    src={post.img}
+                    alt={post.title}
+                    className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-100 to-white opacity-20"></div>
                 </div>
                 <div className="p-8">
                   <div className="flex items-center gap-4 text-xs font-bold text-gray-400 mb-4 uppercase tracking-wider">
