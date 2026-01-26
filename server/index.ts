@@ -14,5 +14,5 @@ app.post('/api/generate', generateHandler);
 app.get('/health', (_req, res) => res.json({ ok: true }));
 
 app.listen(port, () => {
-  console.log(`API server listening on http://localhost:${port}`);
+    console.log(`API server listening on http://localhost:${port}`);
 });

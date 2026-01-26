@@ -2,42 +2,45 @@ import type { Request, Response } from "express";
 
 export default async function handler(req: Request, res: Response) {
   try {
-    const { words, type, language, lengthPreference } = req.body;
+    const { words, type, language } = req.body;
 
-    const lengthPrompt =
-      lengthPreference === "short" ? "approx 50-80 words" :
-      lengthPreference === "medium" ? "approx 150-200 words" :
-      "approx 300-400 words";
+    // Generate type-specific instructions
+    let typeInstruction = '';
+    if (type === 'Dialog') {
+      typeInstruction = 'Create a natural conversation between 2-3 people.';
+    } else if (type === 'Story') {
+      typeInstruction = 'Write a short narrative story with a clear beginning, middle, and end.';
+    } else {
+      typeInstruction = 'Write a descriptive paragraph.';
+    }
 
     const prompt = `
-You are a helpful language tutor.
-Create a ${type} in ${language}.
+You are a language learning assistant. ${typeInstruction}
 
-Constraints:
-1. You MUST use the following vocabulary words: ${words.join(", ")}.
-2. Every vocabulary word MUST be wrapped in **double asterisks**.
-3. Length: ${lengthPrompt}.
-4. First line MUST be: "# Title: ..."
-5. Suitable for language learners.
+IMPORTANT RULES:
+1. You MUST use ALL of these vocabulary words: ${words.join(", ")}
+2. Wrap each vocabulary word in **double asterisks** (example: **word**)
+3. Keep it SHORT and NATURAL - aim for 60-100 words total
+4. Make the content engaging and suitable for language learners
+5. First line MUST be: "# Title: [Your Creative Title]"
+6. Write in ${language}
 
-Output:
+Format:
 # Title: [Title]
 
-[Content]
+[Your ${type.toLowerCase()} content here]
 `.trim();
 
     const response = await fetch(
-      "https://openrouter.ai/api/v1/chat/completions",
+      "https://api.groq.com/openai/v1/chat/completions",
       {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-          "HTTP-Referer": process.env.SITE_URL || "http://localhost:3000",
-          "X-Title": "WordPocket",
+          "Authorization": `Bearer ${process.env.GROQ_API_KEY}`,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "nex-agi/deepseek-v3.1-nex-n1:free",
+          model: "llama-3.3-70b-versatile", // Updated to recommended Groq model
           messages: [{ role: "user", content: prompt }],
           temperature: 0.7,
         }),
@@ -46,7 +49,9 @@ Output:
 
     if (!response.ok) {
       const err = await response.text();
-      return res.status(500).send(err);
+      console.error('OpenRouter API Error:', err);
+      console.error('Status:', response.status);
+      return res.status(500).json({ error: 'OpenRouter API Error', details: err });
     }
 
     const data = await response.json();
@@ -59,6 +64,7 @@ Output:
 
     res.json({ title, content });
   } catch (e: any) {
+    console.error('Server error:', e);
     res.status(500).send(e.message || "Server error");
   }
 }

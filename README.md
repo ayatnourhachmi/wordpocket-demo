@@ -3,7 +3,7 @@
   <img src="https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Vite-6.2-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
   <img src="https://img.shields.io/badge/Express-4.21-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
-  <img src="https://img.shields.io/badge/AI_Powered-OpenRouter-FF6B6B?style=for-the-badge" alt="AI Powered" />
+   <img src="https://img.shields.io/badge/AI_Powered-Groq-FF6B6B?style=for-the-badge" alt="AI Powered" />
 </div>
 
 <br/>
@@ -67,8 +67,8 @@ WordPocket uses AI to automatically generate **personalized reading material** u
 ┌───────────────────────────▼─────────────────────────────────┐
 │                   Backend (Express.js)                       │
 │  ┌──────────────────────────────────────────────────────┐   │
-│  │              OpenRouter API Integration               │   │
-│  │           (DeepSeek V3.1 - Free Tier)                │   │
+│  │              Groq API Integration                    │   │
+│  │           (llama-3.3-70b-versatile)                  │   │
 │  └──────────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -81,7 +81,7 @@ WordPocket uses AI to automatically generate **personalized reading material** u
 
 - **Node.js** (v18 or higher)
 - **npm** or **yarn**
-- **OpenRouter API Key** (free tier available)
+- **Groq API Key** (get yours at https://console.groq.com/keys)
 
 ### Installation
 
@@ -101,8 +101,8 @@ WordPocket uses AI to automatically generate **personalized reading material** u
    # Copy the example env file
    cp server/.env.example server/.env
    
-   # Edit server/.env and add your OpenRouter API key
-   # Get your free key at: https://openrouter.ai/keys
+   # Edit server/.env and add your Groq API key
+   # Get your key at: https://console.groq.com/keys
    ```
 
 4. **Start the development servers**
@@ -147,7 +147,7 @@ wordpocket-demo/
 │   ├── index.js             # Express server setup
 │   ├── .env.example         # Environment template
 │   └── api/
-│       └── generate.js      # AI text generation endpoint
+│       └── generate.ts      # AI text generation endpoint
 └── public/
     └── logos/               # Partner/inspiration logos
 ```
@@ -216,7 +216,7 @@ Read your generated content with interactive word highlighting. Click any bolded
 | **Frontend** | React 19, TypeScript, Tailwind CSS |
 | **Build Tool** | Vite 6 |
 | **Backend** | Express.js, Node.js |
-| **AI** | OpenRouter API (DeepSeek V3.1) |
+| **AI** | Groq API (llama-3.3-70b-versatile) |
 | **Dictionary** | Free Dictionary API |
 | **Icons** | Lucide React |
 | **Storage** | Browser LocalStorage |
