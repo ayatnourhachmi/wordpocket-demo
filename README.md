@@ -30,9 +30,6 @@
 </div>
 
 
-
----
-
 ---
 
 ## 🎯 What is WordPocket?
