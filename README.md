@@ -20,9 +20,15 @@
 ## 🎬 Demo Video
 
 <div align="center">
-   <!-- Place your demo video link or embed here when ready -->
-   <p><em>Demo video coming soon!</em></p>
+   <iframe width="560" height="315" 
+           src="https://www.youtube.com/embed/6bPse29HmXE" 
+           title="Demo Video" 
+           frameborder="0" 
+           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+           allowfullscreen>
+   </iframe>
 </div>
+
 
 ---
 
