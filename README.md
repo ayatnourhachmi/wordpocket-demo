@@ -19,16 +19,12 @@
 
 ## 🎬 Demo Video
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: auto;">
-    <iframe src="https://www.youtube.com/embed/6bPse29HmXE" 
-            title="Demo Video" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-    </iframe>
+<div align="center">
+  <a href="https://www.youtube.com/watch?v=6bPse29HmXE">
+    <img src="https://img.youtube.com/vi/6bPse29HmXE/maxresdefault.jpg" alt="WordPocket Demo Video" width="80%" />
+  </a>
+  <p><em>Click the image above to watch the demo video on YouTube</em></p>
 </div>
-
 
 ---
 
